@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flowvix Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050505;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+
+body::-webkit-scrollbar{
+  width:8px;
+}
+
+body::-webkit-scrollbar-thumb{
+  background:#7b61ff;
+  border-radius:10px;
+}
+
+/* BACKGROUND GLOW */
+
+.bg-glow{
+  position:fixed;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle, rgba(123,97,255,0.18), transparent 70%);
+  top:-200px;
+  right:-150px;
+  z-index:0;
+  filter:blur(40px);
+}
+
+/* SPLASH SCREEN */
+
+#splash-screen{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:#050505;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:99999;
+  transition:1s;
+}
+
+#splash-screen img{
+  width:180px;
+  border-radius:40px;
+  box-shadow:0 0 60px rgba(123,97,255,0.7);
+  animation:floatCard 4s ease-in-out infinite;
+}
+
+#splash-screen h1{
+  margin-top:30px;
+  font-size:62px;
+  color:#7b61ff;
+}
+
+/* NAVBAR */
+
+.navbar{
+  width:100%;
+  height:90px;
+  padding:0 80px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:999;
+  background:rgba(5,5,5,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo img{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  object-fit:cover;
+  box-shadow:0 0 25px rgba(123,97,255,0.5);
+}
+
+.logo h2{
+  color:#7b61ff;
+  font-size:34px;
+}
+
+.nav-links{
+  display:flex;
+  gap:40px;
+}
+
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+  font-weight:500;
+}
+
+.nav-links a:hover{
+  color:#7b61ff;
+}
+
+/* HERO */
+
+.hero{
+  width:100%;
+  min-height:100vh;
+  padding:160px 80px 100px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:80px;
+  position:relative;
+  z-index:2;
+}
+
+.hero-left{
+  flex:1;
+  animation:fadeUp 1s ease;
+}
+
+.hero-right{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  animation:floatCard 5s ease-in-out infinite;
+}
+
+.hero-main-image{
+  width:320px;
+  border-radius:40px;
+  object-fit:cover;
+  box-shadow:
+    0 0 40px rgba(123,97,255,0.25),
+    0 0 90px rgba(123,97,255,0.15);
+}
+
+.hero h1{
+  font-size:88px;
+  line-height:1.05;
+  margin-bottom:20px;
+}
+
+.hero h1 span{
+  color:#7b61ff;
+}
+
+.hero p{
+  color:#a7a7a7;
+  line-height:1.9;
+  font-size:19px;
+  max-width:650px;
+  margin-bottom:40px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.primary-btn,
+.secondary-btn{
+  padding:16px 34px;
+  border-radius:16px;
+  text-decoration:none;
+  transition:0.4s;
+  font-weight:600;
+}
+
+.primary-btn{
+  background:#7b61ff;
+  color:white;
+  box-shadow:0 0 40px rgba(123,97,255,0.6);
+}
+
+.primary-btn:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 60px rgba(123,97,255,0.9);
+}
+
+.secondary-btn{
+  border:1px solid rgba(255,255,255,0.15);
+  color:white;
+  background:rgba(255,255,255,0.04);
+}
+
+.secondary-btn:hover{
+  border-color:#7b61ff;
+  transform:translateY(-6px);
+}
+
+/* SECTION */
+
+.section{
+  padding:100px 80px;
+  position:relative;
+  z-index:2;
+}
+
+.section-title{
+  font-size:54px;
+  margin-bottom:60px;
+  text-align:center;
+}
+
+.section-title span{
+  color:#7b61ff;
+}
+
+/* PROJECTS */
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.project-link{
+  text-decoration:none;
+}
+
+.project-card{
+  background:#101010;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.08);
+  transition:0.5s;
+}
+
+.project-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 0 60px rgba(123,97,255,0.22);
+}
+
+.project-image{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+}
+
+.project-content{
+  padding:30px;
+}
+
+.project-content h3{
+  font-size:34px;
+  margin-bottom:14px;
+}
+
+.project-content p{
+  color:#a7a7a7;
+  line-height:1.8;
+}
+
+/* SERVICES */
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.service-card{
+  background:#101010;
+  border-radius:28px;
+  padding:40px 30px;
+  border:1px solid rgba(255,255,255,0.08);
+  transition:0.4s;
+}
+
+.service-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 50px rgba(123,97,255,0.2);
+}
+
+.service-card h3{
+  margin-bottom:16px;
+  font-size:28px;
+}
+
+.service-card p{
+  color:#a7a7a7;
+  line-height:1.8;
+}
+
+/* CONTACT */
+
+.cta{
+  width:100%;
+  padding:80px;
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+
+.cta-box{
+  background:linear-gradient(135deg,#111,#1b1b1b);
+  border-radius:34px;
+  padding:80px 40px;
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 0 60px rgba(123,97,255,0.12);
+}
+
+.cta h2{
+  font-size:56px;
+  margin-bottom:20px;
+}
+
+.cta p{
+  color:#a7a7a7;
+  margin-bottom:40px;
+  font-size:18px;
+}
+
+/* CONTACT GRID */
+
+.contact-grid{
+  margin-top:50px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+.contact-card{
+  background:#101010;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:28px;
+  padding:40px 30px;
+  transition:0.4s;
+}
+
+.contact-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 50px rgba(123,97,255,0.18);
+}
+
+.contact-icon{
+  width:70px;
+  height:70px;
+  border-radius:20px;
+  background:rgba(123,97,255,0.12);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
+  margin:auto;
+  margin-bottom:24px;
+  box-shadow:0 0 30px rgba(123,97,255,0.18);
+}
+
+.contact-card h3{
+  font-size:28px;
+  margin-bottom:12px;
+}
+
+.contact-card p{
+  color:#a7a7a7;
+  line-height:1.8;
+  font-size:17px;
+}
+
+/* FOOTER */
+
+footer{
+  padding:40px;
+  text-align:center;
+  color:#a7a7a7;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* ANIMATIONS */
+
+@keyframes floatCard{
+  0%{
+    transform:translateY(0px);
+  }
+  50%{
+    transform:translateY(-18px);
+  }
+  100%{
+    transform:translateY(0px);
+  }
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(60px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0px);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+.hero{
+  flex-direction:column;
+  text-align:center;
+}
+
+.hero-buttons{
+  justify-content:center;
+}
+
+.hero h1{
+  font-size:58px;
+}
+
+.navbar{
+  padding:0 30px;
+}
+
+.section{
+  padding:80px 30px;
+}
+
+.cta{
+  padding:60px 30px;
+}
+
+}
+
+@media(max-width:700px){
+
+.nav-links{
+  display:none;
+}
+
+.hero{
+  padding:150px 30px 80px;
+}
+
+.hero h1{
+  font-size:48px;
+}
+
+.section-title{
+  font-size:38px;
+}
+
+.cta h2{
+  font-size:38px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SPLASH -->
+
+<div id="splash-screen">
+
+<img src="logo.jpg">
+
+<h1>Flowvix</h1>
+
+</div>
+
+<div class="bg-glow"></div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">
+<img src="logo.jpg">
+<h2>Flowvix</h2>
+</div>
+
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#projects">Projects</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<h1>
+Designing Modern
+<span>Web & App</span>
+Experiences
+</h1>
+
+<p>
+Flowvix Studio creates modern UI/UX experiences for websites,
+mobile apps, and digital products with clean visuals and smooth user interaction.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#projects" class="primary-btn">
+View Projects
+</a>
+
+<a href="#contact" class="secondary-btn">
+Contact Us
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<img src="logo.jpg" class="hero-main-image">
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section class="section" id="projects">
+
+<h2 class="section-title">
+Featured <span>Projects</span>
+</h2>
+
+<div class="project-grid">
+
+<a href="beatflow.html" class="project-link">
+
+<div class="project-card">
+
+<img src="beatflow.png" class="project-image">
+
+<div class="project-content">
+
+<h3>BeatFlow</h3>
+
+<p>
+Modern music streaming app UI/UX experience with smooth navigation and premium dark aesthetics.
+</p>
+
+</div>
+
+</div>
+
+</a>
+
+</div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section class="section" id="services">
+
+<h2 class="section-title">
+Our <span>Services</span>
+</h2>
+
+<div class="services">
+
+<div class="service-card">
+
+<h3>UI/UX Design</h3>
+
+<p>
+Modern mobile and website interfaces with smooth user experience and premium visual aesthetics.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<h3>Website Design</h3>
+
+<p>
+Creative responsive websites with modern animations and interactive layouts.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<h3>App Design</h3>
+
+<p>
+Mobile app experiences designed for startups, creators, and modern digital brands.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="cta" id="contact">
+
+<div class="cta-box">
+
+<h2>
+Contact Flowvix Studio
+</h2>
+
+<p>
+Modern UI/UX experiences for websites, mobile apps, and digital products.
+</p>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📞
+</div>
+
+<h3>Call</h3>
+
+<p>
++91 8792289611
+</p>
+
+</div>
+
+<div class="contact-card">
+
+<div class="contact-icon">
+💬
+</div>
+
+<h3>Instagram</h3>
+
+<p>
+@flowvix.studio
+</p>
+
+</div>
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📧
+</div>
+
+<h3>Email</h3>
+
+<p>
+samarthsurve.official@gmail.com
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+Designed by Flowvix Studio
+
+</footer>
+
+<script>
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document.getElementById("splash-screen").style.opacity="0";
+document.getElementById("splash-screen").style.visibility="hidden";
+
+},2500);
+
+});
+
+</script>
+
+</body>
+</html>

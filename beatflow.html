@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BeatFlow Project Showcase</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+overflow-x:hidden;
+color:white;
+}
+
+/* BACKGROUND */
+
+body::before{
+content:'';
+position:fixed;
+width:800px;
+height:800px;
+background:radial-gradient(circle,rgba(123,97,255,0.18),transparent 70%);
+top:-250px;
+right:-150px;
+filter:blur(40px);
+z-index:-1;
+}
+
+/* NAVBAR */
+
+.navbar{
+width:100%;
+height:90px;
+padding:0 70px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:fixed;
+top:0;
+left:0;
+z-index:999;
+background:rgba(5,5,5,0.92);
+backdrop-filter:blur(14px);
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.logo img{
+width:56px;
+height:56px;
+border-radius:16px;
+object-fit:cover;
+box-shadow:0 0 30px rgba(123,97,255,0.5);
+}
+
+.logo h2{
+font-size:34px;
+color:#7b61ff;
+}
+
+.nav-links{
+display:flex;
+gap:40px;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:#7b61ff;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+padding:170px 70px 100px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:70px;
+}
+
+.hero-left{
+flex:1;
+animation:fadeUp 1s ease;
+}
+
+.app-icon{
+width:170px;
+height:170px;
+border-radius:40px;
+background:white;
+padding:18px;
+object-fit:cover;
+box-shadow:0 0 60px rgba(123,97,255,0.35);
+margin-bottom:30px;
+animation:floatCard 5s ease-in-out infinite;
+}
+
+.hero-left h1{
+font-size:110px;
+line-height:1;
+margin-bottom:30px;
+font-weight:800;
+}
+
+.hero-left span{
+color:#7b61ff;
+}
+
+.hero-left p{
+font-size:22px;
+line-height:2;
+color:#a7a7a7;
+max-width:700px;
+margin-bottom:40px;
+}
+
+/* TAGS */
+
+.tags{
+display:flex;
+gap:16px;
+flex-wrap:wrap;
+}
+
+.tag{
+padding:14px 24px;
+border-radius:16px;
+background:#111;
+border:1px solid rgba(255,255,255,0.08);
+color:white;
+font-size:15px;
+transition:0.4s;
+}
+
+.tag:hover{
+transform:translateY(-6px);
+box-shadow:0 0 30px rgba(123,97,255,0.2);
+}
+
+/* HERO RIGHT */
+
+.hero-right{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+animation:floatCard 6s ease-in-out infinite;
+}
+
+.hero-cover{
+width:100%;
+max-width:720px;
+border-radius:34px;
+box-shadow:
+0 0 80px rgba(123,97,255,0.18),
+0 0 140px rgba(123,97,255,0.08);
+border:1px solid rgba(255,255,255,0.08);
+}
+
+/* ABOUT */
+
+.about{
+padding:80px 70px;
+}
+
+.about-box{
+background:#101010;
+border-radius:34px;
+padding:60px;
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 0 60px rgba(123,97,255,0.08);
+}
+
+.about-title{
+font-size:58px;
+margin-bottom:30px;
+}
+
+.about-title span{
+color:#7b61ff;
+}
+
+.about-text{
+font-size:20px;
+line-height:2;
+color:#b3b3b3;
+max-width:1200px;
+}
+
+/* SHOWCASE */
+
+.preview-section{
+padding:80px 70px 120px;
+}
+
+.section-title{
+font-size:58px;
+margin-bottom:60px;
+text-align:center;
+}
+
+.section-title span{
+color:#7b61ff;
+}
+
+.preview-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+gap:40px;
+}
+
+.preview-card{
+background:#101010;
+border-radius:34px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.08);
+transition:0.5s;
+}
+
+.preview-card:hover{
+transform:translateY(-12px);
+box-shadow:0 0 60px rgba(123,97,255,0.16);
+}
+
+.preview-image{
+width:100%;
+height:420px;
+object-fit:cover;
+}
+
+.preview-content{
+padding:34px;
+}
+
+.preview-content h3{
+font-size:38px;
+margin-bottom:18px;
+}
+
+.preview-content p{
+color:#a7a7a7;
+line-height:1.9;
+margin-bottom:30px;
+}
+
+.preview-btn{
+display:inline-block;
+padding:16px 28px;
+background:#7b61ff;
+border-radius:16px;
+text-decoration:none;
+color:white;
+font-weight:600;
+transition:0.4s;
+box-shadow:0 0 40px rgba(123,97,255,0.3);
+}
+
+.preview-btn:hover{
+transform:translateY(-6px);
+box-shadow:0 0 60px rgba(123,97,255,0.5);
+}
+
+/* BACK BUTTON */
+
+.back-home{
+display:flex;
+justify-content:center;
+margin-top:70px;
+}
+
+.home-btn{
+padding:18px 34px;
+background:#101010;
+border:1px solid rgba(255,255,255,0.08);
+border-radius:18px;
+text-decoration:none;
+color:white;
+font-size:18px;
+transition:0.4s;
+}
+
+.home-btn:hover{
+transform:translateY(-8px);
+border-color:#7b61ff;
+box-shadow:0 0 40px rgba(123,97,255,0.2);
+}
+
+/* FOOTER */
+
+footer{
+padding:40px;
+text-align:center;
+color:#8d8d8d;
+border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* ANIMATIONS */
+
+@keyframes floatCard{
+0%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-18px);
+}
+100%{
+transform:translateY(0px);
+}
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(70px);
+}
+to{
+opacity:1;
+transform:translateY(0px);
+}
+}
+
+/* MOBILE */
+
+@media(max-width:1100px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.tags{
+justify-content:center;
+}
+
+.hero-left h1{
+font-size:74px;
+}
+
+.hero-left p{
+font-size:18px;
+}
+
+}
+
+@media(max-width:700px){
+
+.navbar{
+padding:0 24px;
+}
+
+.nav-links{
+display:none;
+}
+
+.hero{
+padding:150px 24px 70px;
+}
+
+.about{
+padding:70px 24px;
+}
+
+.preview-section{
+padding:70px 24px 100px;
+}
+
+.hero-left h1{
+font-size:54px;
+}
+
+.about-title{
+font-size:40px;
+}
+
+.section-title{
+font-size:42px;
+}
+
+.preview-grid{
+grid-template-columns:1fr;
+}
+
+.preview-image{
+height:280px;
+}
+
+.preview-content h3{
+font-size:30px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">
+
+<img src="logo2.jpg">
+
+<h2>BeatFlow</h2>
+
+</div>
+
+<div class="nav-links">
+
+<a href="#">Overview</a>
+<a href="#showcase">Designs</a>
+<a href="#showcase">Prototype</a>
+<a href="home.html">Home</a>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<img src="logo2.jpg" class="app-icon">
+
+<h1>
+Beat<span>Flow</span>
+</h1>
+
+<p>
+Modern music streaming UI/UX experience designed by Flowvix Studio with smooth navigation, premium dark aesthetics, interactive prototype flow, immersive music interaction, and clean futuristic visual design.
+</p>
+
+<div class="tags">
+
+<div class="tag">UI/UX Design</div>
+
+<div class="tag">Music Streaming App</div>
+
+<div class="tag">Interactive Prototype</div>
+
+<div class="tag">Figma Design</div>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<img src="beatflow.png" class="hero-cover">
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="about">
+
+<div class="about-box">
+
+<h2 class="about-title">
+Project <span>Overview</span>
+</h2>
+
+<p class="about-text">
+
+BeatFlow is a premium modern music streaming application designed with a futuristic dark interface and smooth user experience.
+
+The project focuses on elegant navigation, immersive listening interaction, responsive mobile layouts, and a clean modern prototype flow.
+
+This UI/UX case study includes splash screen design, authentication screens, home dashboard, search experience, playlist management, profile interface, and now-playing experience.
+
+The overall design language combines minimal aesthetics with glowing purple accents, modern typography, smooth spacing, and interactive app flow presentation inspired by premium startup products and Behance-level UI case studies.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- SHOWCASE -->
+
+<section class="preview-section" id="showcase">
+
+<h2 class="section-title">
+Project <span>Showcase</span>
+</h2>
+
+<div class="preview-grid">
+
+<!-- DESIGN -->
+
+<div class="preview-card">
+
+<img src="design1.png" class="preview-image">
+
+<div class="preview-content">
+
+<h3>UI Design Screens</h3>
+
+<p>
+Modern BeatFlow application screens including splash, login, home, playlist, profile, and now playing experience.
+</p>
+
+<a href="design1.png" target="_blank" class="preview-btn">
+View Design
+</a>
+
+</div>
+
+</div>
+
+<!-- PROTOTYPE -->
+
+<div class="preview-card">
+
+<img src="prototype1.png" class="preview-image">
+
+<div class="preview-content">
+
+<h3>Prototype Flow</h3>
+
+<p>
+Interactive user navigation flow showcasing app transitions and smooth user interaction journey.
+</p>
+
+<a href="prototype1.png" target="_blank" class="preview-btn">
+View Prototype
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BACK BUTTON -->
+
+<div class="back-home">
+
+<a href="index.html" class="home-btn">
+← Back To Home
+</a>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+Designed by Flowvix Studio • BeatFlow UI/UX Project Showcase
+
+</footer>
+
+</body>
+</html>
